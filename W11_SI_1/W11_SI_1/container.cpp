@@ -18,8 +18,7 @@ Container::~Container()
 void Container::push_back(int inputValue)
 {
 	if (index < size) {
-		dynArr[index] = inputValue;
-		index++;
+		dynArr[index++] = inputValue;
 	}
 	else{
 		int* newArray = new int[size * 2];
@@ -27,9 +26,21 @@ void Container::push_back(int inputValue)
 		for (size_t i{ 0 }; i < size; i++) {
 			newArray[i] = dynArr[i];
 		}
+		newArray[index++] =inputValue;
+		std::cout << "\nRebuild..\n";
 		dynArr = newArray;
 		size *= 2;
+		std::cout << "New size: " << size <<std::endl;
+
 	}
+}
+
+void Container::display() const
+{
+	for (size_t i{ 0 }; i < index; i++) {
+		std::cout << '[' << dynArr[i] << "] ";
+	}
+	 std::cout <<std:: endl;
 }
 
 int Container::get_item(int indexInput)
